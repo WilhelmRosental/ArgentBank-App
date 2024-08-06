@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { mixins } from './mixins';
 
 export const Main = styled.main`
   flex: 1;
@@ -13,10 +12,10 @@ export const Banner = styled.div`
   height: 300px;
   position: relative;
 
-  ${mixins.lg`
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 400px;
     background-position: 0% 33%;
-  `}
+  }
 `;
 
 export const BannerContent = styled.section`
@@ -28,13 +27,13 @@ export const BannerContent = styled.section`
   text-align: left;
   margin: 0 auto;
 
-  ${mixins.lg`
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     position: absolute;
     top: 50px;
     right: 50px;
     width: 300px;
     margin: 2rem;
-  `}
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -42,27 +41,27 @@ export const Subtitle = styled.p`
   font-size: 1rem;
   margin: 0;
 
-  ${mixins.lg`
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 1.5rem;
-  `}
+  }
 `;
 
 export const Text = styled.p`
   margin-bottom: 0;
   font-size: 0.9rem;
 
-  ${mixins.lg`
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 1.2rem;
-  `}
+  }
 `;
 
 export const Features = styled.section`
   display: flex;
   flex-direction: column;
 
-  ${mixins.lg`
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     flex-direction: row;
-  `}
+  }
 `;
 
 export const FeatureIcon = styled.img`

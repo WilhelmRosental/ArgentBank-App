@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+// styles/GlobalStyles.ts
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
   * {
     scroll-behavior: smooth;
     box-sizing: border-box;

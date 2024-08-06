@@ -1,15 +1,19 @@
 "use client";
 
+import { ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/globalStyles";
 import { theme } from "../styles/theme";
-import { AppProps } from "next/app";
 
-const App = ({ Component, pageProps }: AppProps) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyles />
-    <Component {...pageProps} />
-  </ThemeProvider>
+const RootLayout = ({ children }: { children: ReactNode }) => (
+  <html lang="en">
+    <body>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles theme={theme} />
+        {children}
+      </ThemeProvider>
+    </body>
+  </html>
 );
 
-export default App;
+export default RootLayout;
