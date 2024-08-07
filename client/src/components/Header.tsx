@@ -3,7 +3,7 @@ import { IChildrenProps } from "../types";
 import Logo from "@/assets/argentBankLogo.png";
 import styled from "styled-components";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 
 const HeaderContainer = styled.header`
   nav {
@@ -32,7 +32,7 @@ const HeaderContainer = styled.header`
 //   }
 // `;
 
-const MainNavLogo = styled(Link)`
+const MainNavLogo = styled.a`
   display: flex;
   align-items: center;
 `;
@@ -50,7 +50,7 @@ export default function Header({ children }: Readonly<IChildrenProps>) {
       <nav>
         <MainNavLogo href="/">
           <MainNavLogoImage src={Logo} alt="Argent Bank Logo" />
-          <h1 className="sr-only">Argent Bank</h1>
+          {/* <h1 className="sr-only">Argent Bank</h1> */}
         </MainNavLogo>
         {children}
       </nav>
