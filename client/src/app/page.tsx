@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import Header from "@/components/Header";
+import IconSecurity from "@/assets/icon-security.png";
+import IconChat from "@/assets/icon-chat.png";
+import IconMoney from "@/assets/icon-money.png";
 import {
   Main,
   Banner,
@@ -18,13 +19,6 @@ import {
 export default function Home() {
   return (
     <>
-      <Header>
-        <div>
-          <Link href="/login">
-            <i className="fa fa-user-circle"></i> Sign In
-          </Link>
-        </div>
-      </Header>
       <Main>
         <Banner>
           <BannerContent>
@@ -38,7 +32,7 @@ export default function Home() {
         <Features>
           <h2 className="sr-only">Features</h2>
           <FeatureItem>
-            <FeatureIcon src="@/src/assets/icon-chat.png" alt="Chat Icon" />
+            <FeatureIcon src={IconChat} alt="Chat Icon" />
             <FeatureItemTitle>You are our #1 priority</FeatureItemTitle>
             <p>
               Need to talk to a representative? You can get in touch through our
@@ -46,17 +40,14 @@ export default function Home() {
             </p>
           </FeatureItem>
           <FeatureItem>
-            <FeatureIcon
-              src="@/src/assets/icon-money.png"
-              alt="Check Shield Icon"
-            />
+            <FeatureIcon src={IconMoney} alt="Check Shield Icon" />
             <FeatureItemTitle>More savings means higher rates</FeatureItemTitle>
             <p>
               The more you save with us, the higher your interest rate will be!
             </p>
           </FeatureItem>
           <FeatureItem>
-            <FeatureIcon src="@/src/assets/icon-security.png" alt="Chat Icon" />
+            <FeatureIcon src={IconSecurity} alt="Chat Icon" />
             <FeatureItemTitle>Security you can trust</FeatureItemTitle>
             <p>
               We use top of the line encryption to make sure your data and money

@@ -1,11 +1,15 @@
 import styled from 'styled-components';
+import BankTree from '@/assets/bank-tree.jpeg';
+import Image from 'next/image';
+
+const bankTreeUrl = BankTree.src;
 
 export const Main = styled.main`
   flex: 1;
 `;
 
 export const Banner = styled.div`
-  background-image: url('../../assets/bank-tree.jpeg');
+  background-image: url(${bankTreeUrl});
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -64,9 +68,10 @@ export const Features = styled.section`
   }
 `;
 
-export const FeatureIcon = styled.img`
+export const FeatureIcon = styled(Image)`
   width: 100px;
-  border: 10px solid ${({ theme }) => theme.colors.primary};
+  height: 100px;
+  border: 10px solid ${({ theme }) => theme.colors.tertiary};
   border-radius: 50%;
   padding: 1rem;
 `;

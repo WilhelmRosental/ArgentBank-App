@@ -4,7 +4,7 @@ import { createGlobalStyle, DefaultTheme } from 'styled-components';
 export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
   * {
     scroll-behavior: smooth;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
   }
 
   *:active,
