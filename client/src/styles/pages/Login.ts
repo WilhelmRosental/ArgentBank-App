@@ -15,10 +15,6 @@ export const SignContent = styled.section`
   padding: 2rem;
 `;
 
-// export const SignIcon = styled.i`
-//   font-size: 5rem;
-// `;
-
 export const SignButton = styled.button`
   display: block;
   width: 100%;

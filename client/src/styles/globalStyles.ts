@@ -1,10 +1,8 @@
-// styles/GlobalStyles.ts
 import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
   * {
     scroll-behavior: smooth;
-    /* box-sizing: border-box; */
   }
 
   *:active,
@@ -23,6 +21,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
     font-family: ${({ theme }) => theme.fontFamily};
     margin: 0;
     background-color: ${({ theme }) => theme.colors.surface};
+    min-height: 100vh;
   }
 
   ul,
