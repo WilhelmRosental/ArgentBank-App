@@ -13,7 +13,7 @@ const customJestConfig = {
     "^@/pages/(.*)$": "<rootDir>/pages/$1",
     "^@/styles/(.*)$": "<rootDir>/styles/$1",
   },
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"], // Optional setup for additional config
+  setupFilesAfterEnv: ["./jest.setup.js"], // Optional setup for additional config
 };
 
 module.exports = createJestConfig(customJestConfig);
