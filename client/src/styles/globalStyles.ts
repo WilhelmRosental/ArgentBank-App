@@ -17,11 +17,20 @@ export const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
   }
 
   body {
-    color: ${({ theme }) => theme.colors.secondary};
-    font-family: ${({ theme }) => theme.fontFamily};
+    display: block;
     margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     background-color: ${({ theme }) => theme.colors.surface};
-    min-height: 100vh;
+    color: ${({ theme }) => theme.colors.secondary};
+  }
+
+  /* Style spécifique pour la page de login */
+  body.login-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: ${({ theme }) => theme.colors.surface}; /* Tu peux définir une couleur spécifique pour la page de login */
   }
 
   ul,

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 export const Main = styled.main`
+  display: flex;
   flex: 1;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
@@ -13,6 +14,7 @@ export const SignContent = styled.section`
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+  height: max-content;
 `;
 
 export const SignButton = styled.button`

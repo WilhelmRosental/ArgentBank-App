@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import "@/fontAwesome";
 import { ThemeProvider } from "styled-components";
 import StyledComponentsRegistry from "../lib/registry";
@@ -12,9 +13,13 @@ import Header from "@/components/Header/index";
 import Footer from "@/components/Footer/index";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
+
+  const isLoginPage = pathname === "/login" || "/profile";
+
   return (
     <html lang="en">
-      <body>
+      <body className={isLoginPage ? "login-page" : ""}>
         <Provider store={store}>
           <StyledComponentsRegistry>
             <ThemeProvider theme={theme}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import { getProfileData } from "@/app/store/selector";
@@ -13,6 +13,19 @@ import Logout from "@/components/Logout/index";
 
 export default function Header() {
   const user = useSelector(getProfileData);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const renderUserContent = () => {
+    if (!isHydrated) {
+      return <span>Loading...</span>;
+    }
+
+    return user ? `${user?.body?.firstName}` : "Sign In";
+  };
 
   return (
     <HeaderContainer>
@@ -23,10 +36,9 @@ export default function Header() {
         </MainNavLogo>
         <div>
           <Link href={user ? "/profile" : "/login"}>
-            <FontAwesomeIcon icon="user-circle" />{" "}
-            {user ? user?.body?.firstName : "Sign In"}
+            <FontAwesomeIcon icon="user-circle" /> {renderUserContent()}
           </Link>
-          {user ? <Logout /> : null}
+          {isHydrated && user ? <Logout /> : null}
         </div>
       </nav>
     </HeaderContainer>

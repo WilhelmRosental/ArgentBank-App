@@ -1,14 +1,25 @@
-// src/mocks/handlers.ts
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
-    http.get('/posts', () => {
-        console.log('Captured a "GET /posts" request')
+    http.post('/login', async ({ request }) => {
+        const body = await request.json();
+        console.log('Captured a "POST /login" request with body:', body);
+
+        return HttpResponse.json({
+            body: {
+                token: 'fake-token',
+            },
+        }, { status: 200 });
     }),
-    http.post('/posts', () => {
-        console.log('Captured a "POST /posts" request')
-    }),
-    http.delete('/posts/:id', ({ params }) => {
-        console.log(`Captured a "DELETE /posts/${params.id}" request`)
+
+    http.get('/profile', () => {
+        console.log('Captured a "GET /profile" request');
+
+        return HttpResponse.json({
+            data: {
+                username: 'JohnDoe',
+                email: 'john.doe@example.com',
+            },
+        }, { status: 200 });
     }),
 ];

@@ -1,45 +1,59 @@
-// Logout.test.tsx
 import { render, screen, fireEvent } from "@testing-library/react";
+import { useDispatch } from "react-redux";
+import { clearUser } from "@/app/store/userSlice"; // Mocked action
 import Logout from "@/components/Logout";
 import { useRouter } from "next/navigation";
 
-// Mock du router de Next.js
+// Mock de `useDispatch` et `useRouter`
+jest.mock("react-redux", () => ({
+  useDispatch: jest.fn(),
+}));
+
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
 
-describe("Logout Component", () => {
-  let mockReplace: jest.Mock;
+describe("Logout component", () => {
+  let mockPush: jest.Mock;
+  let mockDispatch: jest.Mock;
 
   beforeEach(() => {
-    // Mock de la fonction replace du router de Next.js
-    mockReplace = jest.fn();
+    mockPush = jest.fn();
+    mockDispatch = jest.fn();
+
+    // Mock de `useRouter` pour simuler la redirection
     (useRouter as jest.Mock).mockReturnValue({
-      replace: mockReplace,
+      push: mockPush,
     });
 
+    // Mock de `useDispatch` pour simuler l'action Redux
+    (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
+
     // Mock du localStorage
-    global.localStorage.setItem("Token", "mockToken");
+    localStorage.setItem("Token", "fake-token");
   });
 
   afterEach(() => {
-    // Nettoyage du localStorage après chaque test
-    global.localStorage.removeItem("Token");
+    jest.clearAllMocks();
+    localStorage.clear();
   });
 
-  it("should remove token from localStorage and redirect to /login when clicked", () => {
-    render(<Logout />);
+  test("should remove token from localStorage, dispatch clearUser, and redirect to home page", () => {
+    render(<Logout>Sign Out</Logout>);
 
-    // Vérifier que le token est bien dans le localStorage au début
-    expect(global.localStorage.getItem("Token")).toEqual("mockToken");
+    // Vérifie que le token est bien présent avant l'action
+    expect(localStorage.getItem("Token")).toBe("fake-token");
 
-    // Simuler le clic sur "Sign Out"
+    // Simule un clic sur le bouton de déconnexion
     fireEvent.click(screen.getByText(/sign out/i));
 
-    // Vérifier que le token a été supprimé du localStorage
-    expect(global.localStorage.getItem("Token")).toBeNull();
+    // Vérifie que le token est supprimé du localStorage
+    expect(localStorage.getItem("Token")).toBeNull();
 
-    // Vérifier que la redirection vers "/login" a eu lieu
-    expect(mockReplace).toHaveBeenCalledWith("/login");
+    // Vérifie que l'action `clearUser` est dispatchée
+    expect(mockDispatch).toHaveBeenCalledWith(clearUser());
+
+    // Vérifie que la redirection vers la page d'accueil est effectuée
+    expect(mockPush).toHaveBeenCalledWith("/");
   });
 });
