@@ -4,7 +4,6 @@ import { clearUser } from "@/app/store/userSlice"; // Mocked action
 import Logout from "@/components/Logout";
 import { useRouter } from "next/navigation";
 
-// Mock de `useDispatch` et `useRouter`
 jest.mock("react-redux", () => ({
   useDispatch: jest.fn(),
 }));
@@ -21,15 +20,15 @@ describe("Logout component", () => {
     mockPush = jest.fn();
     mockDispatch = jest.fn();
 
-    // Mock de `useRouter` pour simuler la redirection
+    // mock de `useRouter` pour simuler la redirection
     (useRouter as jest.Mock).mockReturnValue({
       push: mockPush,
     });
 
-    // Mock de `useDispatch` pour simuler l'action Redux
+    // mock de `useDispatch` pour simuler l'action Redux
     (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
 
-    // Mock du localStorage
+    // mock du localStorage
     localStorage.setItem("Token", "fake-token");
   });
 
@@ -38,22 +37,22 @@ describe("Logout component", () => {
     localStorage.clear();
   });
 
-  test("should remove token from localStorage, dispatch clearUser, and redirect to home page", () => {
+  it("should remove token from localStorage, dispatch clearUser, and redirect to home page", () => {
     render(<Logout>Sign Out</Logout>);
 
-    // Vérifie que le token est bien présent avant l'action
+    // vérifie que le token
     expect(localStorage.getItem("Token")).toBe("fake-token");
 
-    // Simule un clic sur le bouton de déconnexion
+    // clic sur le bouton de déconnexion
     fireEvent.click(screen.getByText(/sign out/i));
 
-    // Vérifie que le token est supprimé du localStorage
+    // vérifie que le token est supprimé du localStorage
     expect(localStorage.getItem("Token")).toBeNull();
 
-    // Vérifie que l'action `clearUser` est dispatchée
+    // vérifie que l'action `clearUser` est dispatchée
     expect(mockDispatch).toHaveBeenCalledWith(clearUser());
 
-    // Vérifie que la redirection vers la page d'accueil est effectuée
+    // vérifie que la redirection
     expect(mockPush).toHaveBeenCalledWith("/");
   });
 });

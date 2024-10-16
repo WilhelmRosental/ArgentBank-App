@@ -1,10 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+// const API_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const API_BASE_URL = "/";
+
+import "whatwg-fetch";
 
 export const api = createApi({
     reducerPath: 'formLoginApi',
-    baseQuery: fetchBaseQuery({ baseUrl: `${API_BASE_URL}` }),
+    baseQuery: async (args, api, extraOptions) => {
+        console.log('Request Args:', args);
+        const result = await fetchBaseQuery({ baseUrl: API_BASE_URL })(args, api, extraOptions);
+        console.log('Response Result:', result);
+        return result;
+    },
     endpoints: (builder) => ({
         getLoginToken: builder.mutation({
             query: ({ body }) => ({

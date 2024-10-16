@@ -9,6 +9,7 @@
   "main": "index.js",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
+    "@testing-library/user-event": "^14.5.2",
     "argent-bank-api": "file:",
     "axios": "^1.7.3",
     "bcrypt": "^5.1.1",

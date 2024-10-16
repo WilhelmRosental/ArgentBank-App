@@ -1,24 +1,23 @@
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
-    http.post('/login', async ({ request }) => {
+    http.post('/user/login', async ({ request }) => {
         const body = await request.json();
-        console.log('Captured a "POST /login" request with body:', body);
+        console.log('Captured a "POST /user/login" request with body:', body);
 
         return HttpResponse.json({
-            body: {
-                token: 'fake-token',
-            },
+            token: 'fake-token',  // Retourner directement le token sans body
         }, { status: 200 });
     }),
 
-    http.get('/profile', () => {
-        console.log('Captured a "GET /profile" request');
+    // Handler pour obtenir le profil utilisateur
+    http.get('/user/profile', () => {
+        console.log('Captured a "GET /user/profile" request');
 
         return HttpResponse.json({
             data: {
-                username: 'JohnDoe',
-                email: 'john.doe@example.com',
+                email: "john.doe@example.com",
+                password: 'password123',
             },
         }, { status: 200 });
     }),
