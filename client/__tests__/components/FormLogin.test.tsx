@@ -49,7 +49,6 @@ describe("FormLogin Component", () => {
       </Provider>
     );
 
-    // Saisie des champs du formulaire
     fireEvent.change(screen.getByLabelText(/username/i), {
       target: { value: "john.doe@example.com" },
     });
@@ -57,7 +56,6 @@ describe("FormLogin Component", () => {
       target: { value: "password123" },
     });
 
-    // Soumission du formulaire
     fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
 
     // await waitFor(() => {
@@ -91,7 +89,6 @@ describe("FormLogin Component", () => {
     // const data = await response.json();
     // console.log("API response:", data);
 
-    // Rendu du composant
     render(
       <Provider store={store}>
         <ThemeProvider theme={theme}>
@@ -100,7 +97,6 @@ describe("FormLogin Component", () => {
       </Provider>
     );
 
-    // Saisie des champs
     fireEvent.change(screen.getByLabelText(/username/i), {
       target: { value: "wrong-email@example.com" },
     });
@@ -108,7 +104,6 @@ describe("FormLogin Component", () => {
       target: { value: "wrong-password" },
     });
 
-    // Soumission du formulaire
     fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
 
     // await waitFor(() => {

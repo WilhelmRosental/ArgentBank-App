@@ -20,15 +20,12 @@ describe("Logout component", () => {
     mockPush = jest.fn();
     mockDispatch = jest.fn();
 
-    // mock de `useRouter` pour simuler la redirection
     (useRouter as jest.Mock).mockReturnValue({
       push: mockPush,
     });
 
-    // mock de `useDispatch` pour simuler l'action Redux
     (useDispatch as jest.Mock).mockReturnValue(mockDispatch);
 
-    // mock du localStorage
     localStorage.setItem("Token", "fake-token");
   });
 
@@ -40,19 +37,14 @@ describe("Logout component", () => {
   it("should remove token from localStorage, dispatch clearUser, and redirect to home page", () => {
     render(<Logout>Sign Out</Logout>);
 
-    // vérifie que le token
     expect(localStorage.getItem("Token")).toBe("fake-token");
 
-    // clic sur le bouton de déconnexion
     fireEvent.click(screen.getByText(/sign out/i));
 
-    // vérifie que le token est supprimé du localStorage
     expect(localStorage.getItem("Token")).toBeNull();
 
-    // vérifie que l'action `clearUser` est dispatchée
     expect(mockDispatch).toHaveBeenCalledWith(clearUser());
 
-    // vérifie que la redirection
     expect(mockPush).toHaveBeenCalledWith("/");
   });
 });
