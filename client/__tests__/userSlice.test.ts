@@ -1,4 +1,4 @@
-// store/userSlice.test.ts
+import { describe, it, expect } from "vitest";
 import { setToken, setUser, clearUser } from '@/app/store/userSlice';
 import { store } from '@/app/store/index';
 
