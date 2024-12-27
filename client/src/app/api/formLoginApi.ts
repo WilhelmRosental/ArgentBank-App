@@ -7,8 +7,6 @@ import "whatwg-fetch";
 export const api = createApi({
     reducerPath: 'formLoginApi',
     baseQuery: async (args, api, extraOptions) => {
-        console.log('API Base URL:', API_BASE_URL);
-        console.log('Request Args:', args);
         const result = await fetchBaseQuery({
             baseUrl: API_BASE_URL,
             prepareHeaders: (headers) => {
@@ -16,7 +14,6 @@ export const api = createApi({
                 return headers;
             }
         })(args, api, extraOptions);
-        console.log('Result:', result);
         return result;
     },
     endpoints: (builder) => ({

@@ -20,21 +20,19 @@ import {
 export default function Profile() {
   const user = useSelector(getProfileData);
   const router = useRouter();
-  const [isHydrated, setIsHydrated] = useState(false); // Nouvel état pour vérifier si le composant est hydraté
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    setIsHydrated(true); // Le composant est hydraté
+    setIsHydrated(true);
     if (!user) {
-      router.replace("/login"); // Redirection si l'utilisateur n'est pas connecté
+      router.replace("/login");
     }
   }, [router, user]);
 
-  // Si l'utilisateur n'est pas encore hydraté ou s'il n'existe pas, on affiche "Loading"
   if (!isHydrated || !user) {
     return <Main>Loading...</Main>;
   }
 
-  // Rendu des informations utilisateur seulement après l'hydratation
   return (
     <Main>
       <HeaderContainer>

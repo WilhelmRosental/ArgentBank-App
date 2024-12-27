@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation"; // Import de useRouter
+import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { getProfileData } from "@/app/store/selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
