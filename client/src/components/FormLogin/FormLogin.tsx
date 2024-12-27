@@ -85,7 +85,7 @@ const FormLogin = () => {
         await handleTokenResult(tokenResult);
       }
     } catch (error) {
-      console.error("Erreur lors de la mutation", error);
+      console.error("Erreur lors de la mutation", JSON.stringify(error));
       setErrorMsg("Login failed, please try again.");
     }
   };

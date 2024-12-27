@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
+const databaseUrl =
+  process.env.DATABASE_URL || "mongodb://localhost:27017/argentbank";
 
 module.exports = async () => {
   try {
-    const DATABASE_URL =
-      process.env.DATABASE_URL || "mongodb://mongodb:27017/argentbank";
-
-    await mongoose.connect(DATABASE_URL, {
+    await mongoose.connect(databaseUrl, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+      family: 4,
     });
-
-    console.log("Database successfully connected on: ", DATABASE_URL);
+    console.log("Database successfully connected");
   } catch (error) {
-    console.error("Database Connectivity Error:", error);
+    console.error(`Database Connectivity Error: ${error}`);
     throw new Error(error);
   }
 };

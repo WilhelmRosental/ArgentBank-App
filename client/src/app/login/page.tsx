@@ -13,6 +13,7 @@ export default function Login() {
   const router = useRouter();
 
   useEffect(() => {
+    console.log("Current user from Redux store:", user);
     if (user) {
       router.replace("/profile");
     }
