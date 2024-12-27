@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
@@ -19,13 +21,23 @@ export default function Header() {
     setIsHydrated(true);
   }, []);
 
-  const renderUserContent = () => {
-    if (!isHydrated) {
-      return <span>Loading...</span>;
-    }
-
-    return user ? `${user?.body?.firstName}` : "Sign In";
-  };
+  if (!isHydrated) {
+    return (
+      <HeaderContainer>
+        <nav>
+          <MainNavLogo href="/">
+            <MainNavLogoImage src={Logo} alt="Argent Bank Logo" />
+            <h1 className="sr-only">Argent Bank</h1>
+          </MainNavLogo>
+          <div>
+            <Link href="/login">
+              <FontAwesomeIcon icon="user-circle" /> Sign In
+            </Link>
+          </div>
+        </nav>
+      </HeaderContainer>
+    );
+  }
 
   return (
     <HeaderContainer>
@@ -36,9 +48,10 @@ export default function Header() {
         </MainNavLogo>
         <div>
           <Link href={user ? "/profile" : "/login"}>
-            <FontAwesomeIcon icon="user-circle" /> {renderUserContent()}
+            <FontAwesomeIcon icon="user-circle" />{" "}
+            {user ? user.body?.firstName : "Sign In"}
           </Link>
-          {isHydrated && user ? <Logout /> : null}
+          {user && <Logout />}
         </div>
       </nav>
     </HeaderContainer>

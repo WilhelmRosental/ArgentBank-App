@@ -15,7 +15,7 @@ import Footer from "@/components/Footer/index";
 const RootLayout = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
 
-  const isLoginPage = pathname === "/login" || "/profile";
+  const isLoginPage = pathname === "/login" || pathname === "/profile";
 
   return (
     <html lang="en">
